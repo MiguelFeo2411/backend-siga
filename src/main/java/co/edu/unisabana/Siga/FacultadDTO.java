@@ -15,10 +15,9 @@ import java.util.Objects;
 @NoArgsConstructor
 public class FacultadDTO {
     private FacultadEnum facultad;
-    private List<String> estudiantes = new ArrayList<>();
+    private List<EstudianteDTO> estudiantes = new ArrayList<>();
     private List<String> profesores = new ArrayList<>();
     private List<String> materias = new ArrayList<>();
-    private List<CursoDTO> cursos = new ArrayList<>();
 
     public FacultadDTO(FacultadEnum siempre) {
         this.facultad = siempre;
