@@ -89,5 +89,25 @@ public class Controller {
         this.cursos.add(curso);
         return this.cursos;
     }
+    @GetMapping(path = "/cursos") //
+    public List<CursoDTO> obtenerCursos() {
+        return this.cursos;
+    }
+    @PutMapping(path = "/cursos/editar/")
+    public CursoDTO editarCurso(@RequestBody List<EstudianteDTO> listEstudiante, @RequestParam int idCurso ,@RequestParam String profesorNombre,@RequestParam int idProfesor) {
+        for (CursoDTO curso : this.cursos) {
+            if (curso.getId()==idCurso) {
+                ProfesorDTO profesor = new ProfesorDTO(profesorNombre,idProfesor);
+                curso.setProfesor(profesor);
+                curso.setEstudiantes(listEstudiante);
+
+                return curso;
+            }
+
+        }
+        return new CursoDTO();
+    }
+
+
 
 }
