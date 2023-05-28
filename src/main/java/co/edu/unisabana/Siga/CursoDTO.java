@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Curso {
+public class CursoDTO {
     private String materia;
     private int id;
     private String profesor;
