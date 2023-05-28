@@ -1,2 +1,5 @@
-package co.edu.unisabana.Siga;public class Facultad {
+package co.edu.unisabana.Siga;
+
+public class Facultad {
+
 }
