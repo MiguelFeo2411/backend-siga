@@ -8,6 +8,7 @@ import java.util.List;
 @RestController
 public class Controller {
     List<FacultadDTO> facultades = new ArrayList<>();
+    List<CursoDTO> cursos = new ArrayList<>();
     public Controller() {
 
         inicializarFacultades();
@@ -29,11 +30,12 @@ public class Controller {
         facultades.add(educacion);
     }
     //Estudiantes
-    @GetMapping(path = "/estudiante/crear/") //
-    public FacultadDTO crearEstudiante(@RequestParam String estudiante,@RequestBody FacultadDTO facultadAsignada) {
+    @PostMapping(path = "/estudiante/crear/") //
+    public FacultadDTO crearEstudiante(@RequestParam String estudianteNombre, @RequestParam int id ,@RequestBody FacultadDTO facultadAsignada) {
         for (FacultadDTO facultad : this.facultades) {
             if (facultad.equals(facultadAsignada)) {
-                List<String> estudianteList = facultad.getEstudiantes();
+                List<EstudianteDTO> estudianteList = facultad.getEstudiantes();
+                EstudianteDTO estudiante = new EstudianteDTO(estudianteNombre,id);
                 estudianteList.add(estudiante);
                 facultad.setEstudiantes(estudianteList);
                 return facultad;
@@ -44,11 +46,12 @@ public class Controller {
     }
 
     //Profesores
-    @GetMapping(path = "/profesor/crear/") //
-    public FacultadDTO crearProfesor(@RequestParam String profesor,@RequestBody FacultadDTO facultadAsignada) {
+    @PostMapping(path = "/profesor/crear/")
+    public FacultadDTO crearProfesor(@RequestParam String profesorNombre, @RequestParam int id ,@RequestBody FacultadDTO facultadAsignada) {
         for (FacultadDTO facultad : this.facultades) {
             if (facultad.equals(facultadAsignada)) {
-                List<String> profesorList = facultad.getProfesores();
+                List<ProfesorDTO> profesorList = facultad.getProfesores();
+                ProfesorDTO profesor = new ProfesorDTO(profesorNombre,id);
                 profesorList.add(profesor);
                 facultad.setProfesores(profesorList);
                 return facultad;
@@ -74,5 +77,17 @@ public class Controller {
     }
 
     //Cursos
+    @GetMapping(path = "/curso/libre/crear/") //
+    public List<CursoDTO> crearCursoLibre(@RequestParam String asignatura, @RequestBody FacultadDTO facultadAsignada) {
+        CursoDTO curso = new CursoDTO();
+        List<EstudianteDTO> estudiantes = new ArrayList<>();
+        curso.setId((int) (Math.random() * 1000));
+        curso.setFacultad(facultadAsignada.getFacultad());
+        curso.setProfesor(new ProfesorDTO());
+        curso.setMateria(asignatura);
+        curso.setEstudiantes(estudiantes);
+        this.cursos.add(curso);
+        return this.cursos;
+    }
 
 }
