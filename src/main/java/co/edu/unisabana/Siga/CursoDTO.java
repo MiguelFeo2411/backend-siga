@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class CursoDTO {
     private String materia;
+    private FacultadEnum facultad;
     private int id;
-    private String profesor;
-    private List<String> estudiantes = new ArrayList<>();
+    private ProfesorDTO profesor;
+    private List<EstudianteDTO> estudiantes = new ArrayList<>();
 }
