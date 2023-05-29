@@ -107,6 +107,10 @@ public class Controller {
         }
         return new CursoDTO();
     }
+    @GetMapping(path = "/facultades") //
+    public List<FacultadDTO> obtenerFacultades() {
+        return this.facultades;
+    }
 
 
 
