@@ -14,12 +14,12 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FacultadDTO {
-    private FacultadEnum facultad;
+    private String facultad;
     private List<EstudianteDTO> estudiantes = new ArrayList<>();
     private List<ProfesorDTO> profesores = new ArrayList<>();
     private List<String> materias = new ArrayList<>();
 
-    public FacultadDTO(FacultadEnum siempre) {
+    public FacultadDTO(String siempre) {
         this.facultad = siempre;
     }
 
