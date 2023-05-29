@@ -78,10 +78,10 @@ public class Controller {
 
     //Cursos
     @GetMapping(path = "/curso/libre/crear/") //
-    public List<CursoDTO> crearCursoLibre(@RequestParam String asignatura, @RequestParam String facultadAsignada) {
+    public List<CursoDTO> crearCursoLibre(@RequestParam String asignatura, @RequestParam String facultadAsignada,@RequestParam int id) {
         CursoDTO curso = new CursoDTO();
         List<EstudianteDTO> estudiantes = new ArrayList<>();
-        curso.setId((int) (Math.random() * 1000));
+        curso.setId(id);
         curso.setFacultad(facultadAsignada);
         curso.setProfesor(new ProfesorDTO());
         curso.setMateria(asignatura);
